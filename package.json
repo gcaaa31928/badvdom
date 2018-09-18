@@ -1,0 +1,14 @@
+{
+  "name": "badvdom",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:gcaaa31928/badvdom.git",
+  "author": "gcaaa31928 <gcaaa31928@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+	  "build": "./node_modules/.bin/rollup index.js -f esm"
+  },
+  "devDependencies": {
+    "rollup": "^0.66.0"
+  }
+}
