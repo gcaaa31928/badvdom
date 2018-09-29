@@ -6,9 +6,17 @@
   "author": "gcaaa31928 <gcaaa31928@gmail.com>",
   "license": "MIT",
   "scripts": {
-	  "build": "./node_modules/.bin/rollup index.js -f esm"
+    "build": "./node_modules/.bin/rollup index.js -f esm"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "mocha": "^5.2.0",
     "rollup": "^0.66.0"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "jsdom": "^12.0.0"
   }
 }
