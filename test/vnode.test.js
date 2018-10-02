@@ -3,10 +3,6 @@ import bv from '../src/utils';
 import VNode from '../src/vnode';
 import { JSDOM } from 'jsdom'
 
-
-var dom = new JSDOM('<body></body>');
-global.document = dom.window.document;
-
 describe('create VNode test by class', function() {
 	it ('is vnode instance', function() {
 		var vnode = new VNode();
@@ -35,17 +31,17 @@ describe('create VNode test by bv function', function() {
 		document.body.appendChild(element);
 		expect(dom.serialize()).to.equal('<html><head></head><body><div>test</div></body></html>');
 	});
-	// it ('is vnode tree same as dom tree', function() {
-	// 	// should be like this
-	// 	// <div>
-	// 	// 	<div>abcd</div>
-	// 	// 	<span>123</span>
-	// 	// </div>
-	// 	var vnode = bv('div', [], [
-	// 		bv('div', [], 'abcd'),
-	// 		bv('span', [], '123')
-	// 	]);
-	// 	console.log(vnode.render());
-	// 	console.log(dom.serialize());
-	// });
+	it ('is vnode tree same as dom tree', function() {
+		// should be like this
+		// <div>
+		// 	<div>abcd</div>
+		// 	<span>123</span>
+		// </div>
+		var vnode = bv('div', [], [
+			bv('div', [], 'abcd'),
+			bv('span', [], '123')
+		]);
+		document.body.appendChild(vnode.render());
+		expect(dom.serialize()).to.equal('<html><head></head><body><div><div>abcd</div><span>123</span></div></body></html>');
+	});
 });
