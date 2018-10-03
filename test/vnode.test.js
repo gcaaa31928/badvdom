@@ -18,6 +18,19 @@ describe('create VNode test by class', function() {
 
 describe('create VNode test by bv function', function() {
 
+	it('is vnode tag name correct', function() {
+		var vnode = bv('div');
+		expect(vnode.tagName).to.equal('div');
+	});
+
+	it('is vnode props correct', function() {
+		var vnode = bv('div', {
+			class: 'className',
+			id: 'id'
+		});
+		expect(vnode.props).to.be.a('object');
+	});
+
 	it ('is vnode instance', function() {
 		var vnode = bv('div', [], [
 			bv('div', [], 'abcd'),

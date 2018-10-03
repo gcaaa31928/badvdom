@@ -37,6 +37,15 @@ class VNode {
 	get uuid() {
 		return this.__uuid;
 	}
+	get tagName() {
+		return this._tag;
+	}
+	get props() {
+		return this._props;
+	}
+	get key() {
+		return this._props;
+	}
 }
 
 export default VNode;
