@@ -29,6 +29,17 @@ describe('create VNode test by bv function', function() {
 			id: 'id'
 		});
 		expect(vnode.props).to.be.a('object');
+		expect(vnode.props['class']).to.equal('className');
+		expect(vnode.props['id']).to.equal('id');
+	});
+
+	it('is vnode tag name render correct', function() {
+		var vnode = bv('div', {
+			class: 'className',
+			id: 'id'
+		});
+		var element = vnode.render();
+		expect(element.tagName).to.equal('DIV');
 	});
 
 	it ('is vnode instance', function() {

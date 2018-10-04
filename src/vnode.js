@@ -12,7 +12,7 @@ class VNode {
 
 		var props = this._props;
 		for (var propKey in this._props) {
-			prop = this._props[propKey];
+			var prop = this._props[propKey];
 			element.setAttribute(propKey, prop);
 		}
 		if (Array.isArray(this.children)) {
