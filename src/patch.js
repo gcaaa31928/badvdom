@@ -2,17 +2,20 @@ import VNode from './vnode';
 class Patch {
 	static textNode (textNode, oldTextNode) {
 		if (textNode === oldTextNode) {
+			return true;
 		}
+		return false;
 	}
-	static VNodes (vnode, oldVnode) {
-		let children = vnode.children,
-			oldChildren = oldVnode.children;
-
+	static VNode (vnode, oldVnode) {
 		if (vnode == oldVnode) {
 			return;
 		}
-		if (vnode instanceof VNode) {
+		var children = vnode.children,
+			oldChildren = oldVnode.children;
+		if (children && oldChildren) {
+			Patch.patchChildren(children, oldChildren);
+		} else if (children) {
+			Patch.replaceChildren(children);
 		}
-
 	}
 }

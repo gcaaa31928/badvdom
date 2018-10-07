@@ -33,13 +33,17 @@ describe('create VNode test by bv function', function() {
 		expect(vnode.props['id']).to.equal('id');
 	});
 
-	it('is vnode tag name render correct', function() {
+	it('is vnode tag name render corrective', function() {
 		var vnode = bv('div', {
 			class: 'className',
-			id: 'id'
+			id: 'id',
+			attr: 'attr'
 		});
 		var element = vnode.render();
 		expect(element.tagName).to.equal('DIV');
+		expect(element.id).to.equal('id');
+		expect(element.getAttribute('attr')).to.equal('attr');
+		expect(element.classList.contains('className')).to.equal(true);
 	});
 
 	it ('is vnode instance', function() {
@@ -56,16 +60,11 @@ describe('create VNode test by bv function', function() {
 		expect(dom.serialize()).to.equal('<html><head></head><body><div>test</div></body></html>');
 	});
 	it ('is vnode tree same as dom tree', function() {
-		// should be like this
-		// <div>
-		// 	<div>abcd</div>
-		// 	<span>123</span>
-		// </div>
-		var vnode = bv('div', [], [
-			bv('div', [], 'abcd'),
-			bv('span', [], '123')
+		var vnode = bv('div', {class: 'wrapper', 'attr-id': 'attrId'}, [
+			bv('div', {}, 'abcd'),
+			bv('span', {}, '123')
 		]);
 		document.body.appendChild(vnode.render());
-		expect(dom.serialize()).to.equal('<html><head></head><body><div><div>abcd</div><span>123</span></div></body></html>');
+		expect(dom.serialize()).to.equal('<html><head></head><body><div class="wrapper" attr-id="attrId"><div>abcd</div><span>123</span></div></body></html>');
 	});
 });
