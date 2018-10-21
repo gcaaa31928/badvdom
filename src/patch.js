@@ -1,21 +1,14 @@
-import VNode from './vnode';
 class Patch {
-	static textNode (textNode, oldTextNode) {
-		if (textNode === oldTextNode) {
-			return true;
-		}
-		return false;
+	static TEXT = Symobol('text');
+	static PROP = Symobol('prop');
+	static REPLACE = Symobol('replace');
+	static INSERT = Symobol('insert');
+	static DELETE = Symobol('delete');
+	static genInst(type, content) {
+		return Patch(type, content);
 	}
-	static VNode (vnode, oldVnode) {
-		if (vnode == oldVnode) {
-			return;
-		}
-		var children = vnode.children,
-			oldChildren = oldVnode.children;
-		if (children && oldChildren) {
-			Patch.patchChildren(children, oldChildren);
-		} else if (children) {
-			Patch.replaceChildren(children);
-		}
+	constructor(type, content) {
+		this._type = type;
+		this._content = content;
 	}
 }
